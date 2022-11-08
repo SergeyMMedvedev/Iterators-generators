@@ -1,4 +1,5 @@
 from collections import deque
+import sys
 
 
 class FlatIterator:
@@ -16,7 +17,6 @@ class FlatIterator:
             self.list_of_list = deque(self.list_of_list.popleft()) + self.list_of_list
             return self.__next__()
         return self.list_of_list.popleft()
-          
         
 def test_3():
 
