@@ -3,11 +3,8 @@ from collections import deque
 
 
 def flat_generator(list_of_lists):
-
-    list_of_lists = deque(list_of_lists)
-    while list_of_lists:
-        yield from list_of_lists.popleft()
-
+    for list_ in list_of_lists:
+        yield from list_
 
 
 def test_2():
@@ -31,12 +28,4 @@ def test_2():
 
 
 if __name__ == '__main__':
-    list_of_lists = [
-        ['a', 'b', 'c'],
-        ['d', 'e', 'f', 'h', False],
-        [1, 2, None]
-    ]
-    # for i in flat_generator(list_of_lists):
-    #     print(i)
-    
     test_2()

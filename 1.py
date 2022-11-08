@@ -37,9 +37,4 @@ def test_1():
 
 
 if __name__ == '__main__':
-    list_of_lists_1 = [
-        ['a', 'b', 'c'],
-        ['d', 'e', 'f', 'h', False],
-        [1, 2, None]
-    ]
     test_1()

@@ -12,21 +12,12 @@ class FlatIterator:
     def __next__(self):
         if not self.list_of_list:
             raise StopIteration
-        el = self.list_of_list[0]
-        if isinstance(el, list):
-            self.list_of_list.popleft()
-            for i in el[::-1]:
-                self.list_of_list.appendleft(i)
+        if isinstance(self.list_of_list[0], list):
+            self.list_of_list = deque(self.list_of_list.popleft()) + self.list_of_list
             return self.__next__()
-        else:
-            return self.list_of_list.popleft()
-        
+        return self.list_of_list.popleft()
           
         
-        
- 
-        
-    
 def test_3():
 
     list_of_lists_2 = [
@@ -46,14 +37,4 @@ def test_3():
 
 
 if __name__ == '__main__':
-
-    list_of_lists_2 = [
-        [['a'], ['b', 'c']],
-        ['d', 'e', [['f'], 'h'], False],
-        [1, 2, None, [[[[['!']]]]], []]
-    ]
-
-    # for i in FlatIterator(list_of_lists_2):
-    #     print(i, end=', ')
-    print(list(FlatIterator(list_of_lists_2)))
-    # test_3()
+    test_3()

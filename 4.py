@@ -3,17 +3,11 @@ from collections import deque
 
 
 def flat_generator(list_of_lists):
-    list_of_lists = deque(list_of_lists)
-    while list_of_lists:
-        el = list_of_lists.popleft()
-        if isinstance(el, list):
-            for i in flat_generator(el):
-                if not isinstance(i, list):
-                    yield i
-                else:
-                    flat_generator(i)
+    for elem in list_of_lists:
+        if isinstance(elem, list):
+            yield from flat_generator(elem)
         else:
-            yield el
+            yield elem
 
 
 def test_4():
