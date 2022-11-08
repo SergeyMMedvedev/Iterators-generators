@@ -3,19 +3,22 @@ from collections import deque
 
 class FlatIterator:
 
-    def __init__(self, list_of_list):
-        self.list_of_list = deque(list_of_list)
+    def __init__(self, some_list):
+        self.main_list = some_list
 
     def __iter__(self):
-        self._list = deque(self.list_of_list.popleft())
+        self.main_list_cursor = 0
+        self.nested_list_cursor = -1
         return self
 
     def __next__(self):
-        if not self.list_of_list and not self._list:
+        self.nested_list_cursor += 1
+        if len(self.main_list[self.main_list_cursor]) == self.nested_list_cursor:
+            self.main_list_cursor += 1
+            self.nested_list_cursor = 0
+        if self.main_list_cursor >= len(self.main_list):
             raise StopIteration
-        if not self._list:
-            self._list = deque(self.list_of_list.popleft())
-        return self._list.popleft()
+        return self.main_list[self.main_list_cursor][self.nested_list_cursor]
 
 
 def test_1():

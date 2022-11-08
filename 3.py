@@ -18,6 +18,7 @@ class FlatIterator:
             return self.__next__()
         return self.list_of_list.popleft()
         
+        
 def test_3():
 
     list_of_lists_2 = [
